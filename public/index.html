@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>博物馆导览制作间</title>
+<style>
+:root{--ink:#1f2733;--muted:#6b7686;--line:#e3e7ee;--bg:#f5f6f8;--card:#fff;--brand:#8a5a2b;--brand2:#b98a4f;--ok:#1f8a4c;--warn:#c47f00;--bad:#c0392b;--info:#2b6cb0;}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.55 -apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:linear-gradient(110deg,#3a2a18,#7a5326);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;font-weight:650;letter-spacing:.5px}
+header .sub{opacity:.78;font-size:12px}
+nav{display:flex;gap:4px;background:var(--card);padding:0 16px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;overflow-x:auto}
+nav button{border:0;background:none;padding:13px 15px;font-size:14px;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav button.on{color:var(--brand);border-bottom-color:var(--brand);font-weight:650}
+main{padding:20px;max-width:1180px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:16px}
+.card h3{margin:16px 0 8px;font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr}}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600}
+.pill.ok{background:#e6f6ec;color:var(--ok)} .pill.warn{background:#fdf2dd;color:var(--warn)}
+.pill.bad{background:#fbe9e7;color:var(--bad)} .pill.info{background:#e7f0fa;color:var(--info)}
+.pill.mut{background:#eef0f4;color:var(--muted)}
+button.act{border:1px solid var(--brand2);background:#fff;color:var(--brand);border-radius:7px;padding:6px 12px;cursor:pointer;font-size:13px}
+button.act:hover{background:#faf3e9}
+button.act.primary{background:var(--brand);color:#fff}
+button.act.danger{border-color:var(--bad);color:var(--bad)}
+button.act:disabled{opacity:.45;cursor:not-allowed}
+textarea,input,select{font:inherit;border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%;background:#fff}
+textarea{min-height:64px;resize:vertical}
+.muted{color:var(--muted);font-size:12.5px}
+.seg{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;background:#fcfcfe}
+.seg .code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted)}
+.seg .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12.5px}
+.gap{background:#fdf0ee;border:1px solid #f2c4bd;border-radius:7px;padding:8px 10px;margin:5px 0;font-size:12.5px}
+.gap b{color:var(--bad)}
+.tabs{display:flex;gap:6px;margin:6px 0}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;cursor:pointer;font-size:12.5px}
+.tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.stop{display:flex;align-items:center;gap:10px;background:#fcfcfe;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0}
+.stop .n{width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+.transit{margin:-4px 0 0 34px;padding:6px 10px;border-left:2px dashed var(--brand2);font-size:12.5px;color:var(--muted)}
+.badge{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#f0f1f5;border-radius:5px;padding:1px 6px}
+.toast{position:fixed;right:18px;bottom:18px;background:#22303f;color:#fff;padding:10px 15px;border-radius:8px;font-size:13px;opacity:0;transform:translateY(8px);transition:.25s;z-index:50;max-width:380px}
+.toast.show{opacity:1;transform:none}
+.kv{font-size:12.5px;color:var(--muted)} .kv b{color:var(--ink)}
+.drill h3{display:flex;gap:8px;align-items:center}
+.progress{height:8px;background:#eee;border-radius:5px;overflow:hidden}.progress i{display:block;height:100%;background:var(--brand2)}
+.unitbox{border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.unitbox.bad{border-color:#f2c4bd;background:#fdf8f7}
+.unitbox.ok{border-color:#bfe3cd;background:#f7fdf9}
+code{background:#f0f1f5;padding:1px 5px;border-radius:4px;font-size:12px}
+.legend{font-size:12px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏛️ 博物馆导览制作间</h1>
+  <span class="sub">展品讲述 · 三受众文稿 · 分段音频流水线 · 路线与离线包发布</span>
+  <span style="flex:1"></span>
+  <button class="act" id="btn-reset" style="background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.5)">重置演示数据</button>
+</header>
+<nav id="nav"></nav>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

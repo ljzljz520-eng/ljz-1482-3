@@ -1,0 +1,9 @@
+{
+  "name": "museum-guide-studio",
+  "version": "1.0.0",
+  "description": "博物馆导览制作间：网页编辑展品讲述与路线，后端管理音频处理任务，资料闭包驱动的离线包发布",
+  "private": true,
+  "scripts": { "start": "node src/server.js" },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}

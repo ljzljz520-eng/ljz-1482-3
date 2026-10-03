@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>博物馆导览制作间</title>
+<style>
+  :root { --bg:#f4f1ea; --ink:#23211c; --accent:#8a5a24; --ok:#2e7d43; --warn:#b3261e;
+          --card:#fffdf8; --line:#ddd4c2; --muted:#6f6a5d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+         background:var(--bg); color:var(--ink); }
+  header { background:#2b2620; color:#f6efe2; padding:12px 20px; display:flex;
+           align-items:center; gap:16px; }
+  header h1 { font-size:18px; margin:0; }
+  nav button { background:transparent; color:#e9dfca; border:1px solid #5a5040;
+               padding:6px 12px; border-radius:6px; cursor:pointer; margin-right:6px; }
+  nav button.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  main { padding:18px 22px; max-width:1180px; margin:0 auto; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          padding:14px 16px; margin-bottom:14px; }
+  h2 { font-size:16px; margin:0 0 10px; }
+  h3 { font-size:14px; margin:12px 0 6px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line);
+          vertical-align:top; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; }
+  .approved,.ready,.published,.done,.up_to_date { background:#e3f2e6; color:var(--ok); }
+  .draft,.building { background:#eceff1; color:#555; }
+  .pending_review,.blocked,.interrupted,.update_available { background:#fbe9e7; color:var(--warn); }
+  .invalid { background:#fbe9e7; color:var(--warn); }
+  .valid { background:#e3f2e6; color:var(--ok); }
+  button.act { background:var(--accent); color:#fff; border:0; border-radius:6px;
+               padding:5px 10px; cursor:pointer; font-size:12px; }
+  button.ghost { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+  input,textarea,select { font:inherit; padding:5px 8px; border:1px solid var(--line);
+                          border-radius:6px; background:#fff; }
+  textarea { width:100%; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .muted { color:var(--muted); font-size:12px; }
+  .gap { color:var(--warn); font-size:12px; }
+  pre { background:#26221c; color:#e9e2d2; padding:10px; border-radius:8px;
+        font-size:12px; overflow:auto; max-height:340px; }
+  .seg { display:flex; gap:8px; align-items:flex-start; margin:6px 0; }
+  .seg .sid { color:var(--muted); font-size:11px; min-width:180px; }
+  .toast { position:fixed; right:18px; bottom:18px; max-width:420px; z-index:99; }
+  .toast div { background:#2b2620; color:#fff; padding:10px 14px; border-radius:8px;
+               margin-top:8px; font-size:13px; }
+  .toast div.err { background:#7a1d18; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏛️ 博物馆导览制作间</h1>
+  <nav>
+    <button data-tab="exhibits" class="active">展品与事实</button>
+    <button data-tab="manuscripts">三语文稿</button>
+    <button data-tab="audio">音频任务</button>
+    <button data-tab="routes">路线</button>
+    <button data-tab="packages">导览包与发布</button>
+  </nav>
+</header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
